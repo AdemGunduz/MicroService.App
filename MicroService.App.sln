@@ -9,17 +9,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MarketModule", "MarketModul
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccountStructureModule", "AccountStructureModule", "{4FE8881D-1766-4A56-B5E6-F54FB4518015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.API", "AccountStructureModule\AccountService.API\AccountService.API.csproj", "{6D29C508-47B3-4642-B4E6-AD08AC2CB0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.API", "AccountStructureModule\AccountService.API\AccountService.API.csproj", "{6D29C508-47B3-4642-B4E6-AD08AC2CB0D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Data", "AccountStructureModule\AccountService.Data\AccountService.Data.csproj", "{E6DD8811-80EE-4E6E-B6DA-7774B301B1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Data", "AccountStructureModule\AccountService.Data\AccountService.Data.csproj", "{E6DD8811-80EE-4E6E-B6DA-7774B301B1B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService.API", "InventoryModule\InventoryService.API\InventoryService.API.csproj", "{9565041F-0CCE-4C4E-9DC9-4D2096D3F699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService.API", "InventoryModule\InventoryService.API\InventoryService.API.csproj", "{9565041F-0CCE-4C4E-9DC9-4D2096D3F699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService.Data", "InventoryModule\InventoryService.Data\InventoryService.Data.csproj", "{62124433-1502-4231-BE9B-82DB05C9991D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService.Data", "InventoryModule\InventoryService.Data\InventoryService.Data.csproj", "{62124433-1502-4231-BE9B-82DB05C9991D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketService.API", "MarketModule\MarketService.API\MarketService.API.csproj", "{8AAE0210-76EA-4B15-A086-853354335DD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketService.API", "MarketModule\MarketService.API\MarketService.API.csproj", "{8AAE0210-76EA-4B15-A086-853354335DD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketService.Data", "MarketModule\MarketService.Data\MarketService.Data.csproj", "{E3482A27-47AB-4B38-8649-187D2AAB4D9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketService.Data", "MarketModule\MarketService.Data\MarketService.Data.csproj", "{E3482A27-47AB-4B38-8649-187D2AAB4D9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedModule", "SharedModule", "{1B89DF31-A422-4F12-9CE1-39967C471D9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "SharedModule\Shared\Shared\Shared.csproj", "{427B1782-2468-407A-93D1-51EB7BB4D42F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIGW", "APIGW", "{219647D3-D43E-4D9F-AC12-B21AB6858981}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot.Gateway", "APIGW\Ocelot.Gateway\Ocelot.Gateway.csproj", "{A66C9837-EEE1-4EEE-B9FE-542204E884E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4C8B6CEB-6E5E-4E87-8364-0FB1E0201719}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,17 +61,30 @@ Global
 		{E3482A27-47AB-4B38-8649-187D2AAB4D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3482A27-47AB-4B38-8649-187D2AAB4D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3482A27-47AB-4B38-8649-187D2AAB4D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427B1782-2468-407A-93D1-51EB7BB4D42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427B1782-2468-407A-93D1-51EB7BB4D42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427B1782-2468-407A-93D1-51EB7BB4D42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427B1782-2468-407A-93D1-51EB7BB4D42F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66C9837-EEE1-4EEE-B9FE-542204E884E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66C9837-EEE1-4EEE-B9FE-542204E884E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66C9837-EEE1-4EEE-B9FE-542204E884E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66C9837-EEE1-4EEE-B9FE-542204E884E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{799AE1EF-D1CE-4EA7-ABCD-56AACB9167DD} = {4C8B6CEB-6E5E-4E87-8364-0FB1E0201719}
+		{19F1DD83-350C-4F28-8636-B4EE03114CA5} = {4C8B6CEB-6E5E-4E87-8364-0FB1E0201719}
+		{4FE8881D-1766-4A56-B5E6-F54FB4518015} = {4C8B6CEB-6E5E-4E87-8364-0FB1E0201719}
 		{6D29C508-47B3-4642-B4E6-AD08AC2CB0D3} = {4FE8881D-1766-4A56-B5E6-F54FB4518015}
 		{E6DD8811-80EE-4E6E-B6DA-7774B301B1B7} = {4FE8881D-1766-4A56-B5E6-F54FB4518015}
 		{9565041F-0CCE-4C4E-9DC9-4D2096D3F699} = {799AE1EF-D1CE-4EA7-ABCD-56AACB9167DD}
 		{62124433-1502-4231-BE9B-82DB05C9991D} = {799AE1EF-D1CE-4EA7-ABCD-56AACB9167DD}
 		{8AAE0210-76EA-4B15-A086-853354335DD4} = {19F1DD83-350C-4F28-8636-B4EE03114CA5}
 		{E3482A27-47AB-4B38-8649-187D2AAB4D9F} = {19F1DD83-350C-4F28-8636-B4EE03114CA5}
+		{427B1782-2468-407A-93D1-51EB7BB4D42F} = {1B89DF31-A422-4F12-9CE1-39967C471D9F}
+		{A66C9837-EEE1-4EEE-B9FE-542204E884E5} = {219647D3-D43E-4D9F-AC12-B21AB6858981}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78B8E0AD-0944-4938-85CA-CF43EBD4855A}

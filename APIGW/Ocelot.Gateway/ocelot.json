@@ -1,0 +1,28 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5051
+        },
+        {
+          "Host": "localhost",
+          "Port": 5052
+        },
+        {
+          "Host": "localhost",
+          "Port": 5053
+        }
+
+      ],
+      "UpstreamPathTemplate": "/gateway/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Patch", "Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000"
+  }
+}

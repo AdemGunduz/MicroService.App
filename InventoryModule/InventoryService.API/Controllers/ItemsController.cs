@@ -29,6 +29,8 @@ namespace InventoryService.API.Controllers
             var result = await itemRepository.GetById(id);
             return Ok(result);
         }
+    
+
         [HttpPost]
         public async Task<IActionResult> Create(ItemCreateDto dto)
         {

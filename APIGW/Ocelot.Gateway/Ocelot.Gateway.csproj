@@ -4,16 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ocelot" Version="23.3.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SharedModule\Shared\Shared\Shared.csproj" />
-    <ProjectReference Include="..\InventoryService.Data\InventoryService.Data.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

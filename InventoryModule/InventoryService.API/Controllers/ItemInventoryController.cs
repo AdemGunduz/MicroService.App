@@ -24,12 +24,13 @@ namespace InventoryService.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(string id)
-        {
-            var result = await itemInventoryRepository.GetById(id);
-            return Ok(result);
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetById(string id)
+        //{
+        //    var result = await itemInventoryRepository.GetById(id);
+        //    return Ok(result);
+        //}
+
         [HttpPost]
         public async Task<IActionResult> Create(ItemInventoryCreateDto dto)
         {
@@ -42,17 +43,20 @@ namespace InventoryService.API.Controllers
             return Created("", result);
         }
 
-        [HttpPut]
+
+        //     Envanterdeki bir öğenin sayısını günceller
+        //     Market servisinde satış olduğu zaman count azalır
+    
+        [HttpPatch]
         public async Task<IActionResult> Update(ItemInventoryUpdateDto dto)
         {
-            await itemInventoryRepository.Update(new ItemInventory
+           var updatedEntity = await itemInventoryRepository.GetItemInventory(dto.ItemId, dto.InventoryId);
+            if (updatedEntity != null)
             {
-                ItemId = dto.ItemId,
-                InventoryId = dto.InventoryId,
-                Count = dto.Count,
-                Id = dto.Id,
-            });
-
+                updatedEntity.Count = updatedEntity.Count - dto.Count;
+                await itemInventoryRepository.Update(updatedEntity);
+                return NoContent();
+            }
             return NoContent();
         }
 
