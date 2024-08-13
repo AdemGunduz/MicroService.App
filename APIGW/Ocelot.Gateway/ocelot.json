@@ -7,18 +7,33 @@
         {
           "Host": "localhost",
           "Port": 5051
-        },
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/account/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Patch", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5052
-        },
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/inventory/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Patch", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5053
         }
-
       ],
-      "UpstreamPathTemplate": "/gateway/{everything}",
+      "UpstreamPathTemplate": "/gateway/market/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Patch", "Delete" ]
     }
   ],
