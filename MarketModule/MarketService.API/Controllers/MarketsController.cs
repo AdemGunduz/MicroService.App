@@ -1,9 +1,11 @@
-﻿using MarketService.Data.Dtos;
+﻿using InventoryService.Data.Repositories;
+using MarketService.Data.Dtos;
 using MarketService.Data.Repositories;
 using MassTransit;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace MarketService.API.Controllers
 {
@@ -12,40 +14,58 @@ namespace MarketService.API.Controllers
     public class MarketsController : ControllerBase
     {
         private readonly IMarketRepository _marketRepository;
-        private IPublishEndpoint _publishEndpoint;
+        private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ItemInventoryRepository _itemInventoryRepository;
 
-        public MarketsController(IMarketRepository marketRepository, IPublishEndpoint publishEndpoint)
+        public MarketsController(IMarketRepository marketRepository, IPublishEndpoint publishEndpoint, ItemInventoryRepository itemInventoryRepository)
         {
             _marketRepository = marketRepository;
             _publishEndpoint = publishEndpoint;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var result = _marketRepository.GetAll();
-            return Ok(result);
+            _itemInventoryRepository = itemInventoryRepository;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(MarketDtos dto)
         {
-            var result = _marketRepository.Add(new Data.Entities.Market
+            var itemInventory = await _itemInventoryRepository.GetItemInventory(dto.ItemId, dto.InventoryId);
+            if (itemInventory == null)
             {
-                InventoryId = dto.InventoryId,
-                ItemId = dto.ItemId,
-                PlayerId = dto.PlayerId,
-                Price = dto.Price,
-            });
+                return BadRequest("Envanter bilgisi bulunamadı.");
+            }
+            var lockAcquired = await _itemInventoryRepository.TryLockMarketAsync(itemInventory.Id, TimeSpan.FromSeconds(30));
+            // Kilit, başka bir işlem tarafından alınmamışsa true döner.
 
-            await _publishEndpoint.Publish<IMarketCreated>(new
+
+            if (!lockAcquired)
             {
-                dto.InventoryId,
-                dto.ItemId,
-                Count = 1
-            });
-            return Created("", result);
+                return Conflict("Şu anda başka bir işlem yapılıyor. Lütfen tekrar deneyin.");
+            }
+
+            try
+            {
+                // Envanteri kontrol et
+                //var itemInventory =  await itemInventoryRepository.GetItemInventory(dto.ItemId, dto.InventoryId);
+                if (itemInventory == null || itemInventory.Count < 1)
+                {
+                    return BadRequest("Yeterli stok yok.");
+                }
+
+               // itemInventory.Count -= dto.Quantity; // Stok miktarını azalt
+               //await _itemInventoryRepository.Update(itemInventory);
+
+                await _publishEndpoint.Publish<IMarketCreated>(new
+                {
+                    dto.InventoryId,
+                    dto.ItemId,
+                    Count = dto.Quantity
+                });
+
+                return Created("", Ok());
+            }
+            finally
+            {
+                await _itemInventoryRepository.ReleaseLockMarketAsync(itemInventory.Id); // Kilidi serbest bırak
+            }
         }
-
     }
 }

@@ -13,6 +13,8 @@ namespace MarketService.Data.Entities
         public string InventoryId { get; set; } = null!;
         public decimal Price { get; set; }
         public string PlayerId { get; set; } = null!;
+
+        public int Quantity { get; set; } = 0;  // Bu property'yi ekleyin
         public bool Status { get; set; }= false;
 
     }

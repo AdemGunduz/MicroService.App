@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketService.Data.Migrations
 {
     [DbContext(typeof(MarketContext))]
-    [Migration("20240802113944_UpdateMarketPricePrecision")]
-    partial class UpdateMarketPricePrecision
+    [Migration("20240817155339_AddQuantityToMarket")]
+    partial class AddQuantityToMarket
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace MarketService.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

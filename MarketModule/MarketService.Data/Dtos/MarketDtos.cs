@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace MarketService.Data.Dtos
 {
-    public record MarketDtos(string ItemId, string InventoryId, decimal Price, string PlayerId);
+    public record MarketDtos(string ItemId, string InventoryId, decimal Price, int Quantity, string PlayerId);
 
 }

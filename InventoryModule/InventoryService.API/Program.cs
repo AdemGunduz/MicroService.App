@@ -1,11 +1,19 @@
 using InventoryService.API.Consumers;
 using InventoryService.Data.Repositories;
 using MassTransit;
+using StackExchange.Redis;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    var configuration = ConfigurationOptions.Parse("localhost:1453", true);
+    return ConnectionMultiplexer.Connect(configuration);
+});
+
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumers(Assembly.GetExecutingAssembly());
@@ -27,6 +35,7 @@ builder.Services.AddScoped<InventoryRepository>();
 builder.Services.AddScoped<ItemInventoryRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
